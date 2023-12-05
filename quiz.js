@@ -112,7 +112,6 @@ function startQuiz(){
 let currentQuestn
 let questionNum 
 function showQuestion(){
-    document.body.backgroundColor = '#eee' 
     resetquestn()
     currentQuestn = shuffleQuestion[currentQuestnIndex]
     questionNum = currentQuestnIndex + 1
@@ -150,13 +149,7 @@ function showQuestion(){
     });
 }
 
-// this question brings up another question
-function resetquestn(){
-    nextQuestnBtn.style.display = 'none'
-    while(answerBtns.firstChild){
-        answerBtns.removeChild(answerBtns.firstChild)
-    }
-}
+
 function shuffleQuestions(){
     shuffleQuestion = questions.sort(() => Math.random() - .5)
     // console.log(shuffleQuestion)
@@ -167,6 +160,7 @@ function shuffleQuestions(){
 function showScore(){
     resetquestn()
     if(score === questions.length){
+        h3Question.innerHTML = `You scored ${score} out of ${questions.length}.You need to sharpen your javaScript skills to attain success`
         quizContainer.classList.remove = '.quiz'
         document.body.style.backgroundImage = 'url(./galaxy.gif)'
     }
@@ -191,6 +185,15 @@ function handleNextQuestion(){
     }
 }
 
+
+// this question brings up another question
+function resetquestn(){
+    nextQuestnBtn.style.display = 'none'
+    while(answerBtns.firstChild){
+        answerBtns.removeChild(answerBtns.firstChild)
+    }
+    document.body.backgroundColor = '#eee'
+}
 
 // this code handles the next button when it is being click
 nextQuestnBtn.addEventListener('click', ()=>{
